@@ -423,6 +423,7 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.3);
     transition: transform .2s;
   }
+  .video-frame .play-btn svg { width: 30px; height: 30px; margin-left: 4px; }
   .video-frame:hover .play-btn { transform: translate(-50%, -50%) scale(1.06); background: var(--clay); color: var(--paper); }
   .video-frame { touch-action: manipulation; user-select: none; }
   .video-frame > * { pointer-events: none; }
@@ -1473,28 +1474,56 @@
       border-bottom: 1px solid var(--line-soft);
     }
 
-    /* HERO — tighter padding, big image first feel */
+    /* HERO móvil — la foto es el fondo a pantalla completa, el texto va encima */
     .hero {
-      min-height: auto;
-      padding: 88px 20px 40px;
-      gap: 32px;
+      position: relative;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      padding: 96px 20px 40px;
+      overflow: hidden;
+      background: var(--forest);
     }
+    .hero-img-wrap {
+      position: absolute; inset: 0;
+      z-index: 0;
+      aspect-ratio: auto;
+      border-radius: 0;
+      box-shadow: none;
+    }
+    .hero-img-wrap img { transition: none; }
+    .hero-img-wrap::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(27,31,20,0.30) 0%, rgba(27,31,20,0.40) 42%, rgba(27,31,20,0.92) 100%);
+    }
+    .hero-img-cap, .hero-corner-tape { display: none; }
+
+    .hero-copy { position: relative; z-index: 2; padding-bottom: 0; margin-top: auto; }
     .hero h1 {
       font-size: clamp(56px, 16vw, 78px);
-      margin-bottom: 22px;
+      margin-bottom: 20px;
+      color: var(--paper);
     }
-    .hero-copy .kicker { margin-bottom: 22px; padding: 5px 11px; font-size: 10px; }
-    .hero-sub { font-size: 16.5px; margin-bottom: 26px; }
-    .hero-cta { gap: 10px; margin-bottom: 28px; }
+    .hero h1 em { color: var(--paper); }
+    .hero-copy .kicker {
+      margin-bottom: 20px; padding: 6px 12px; font-size: 10px;
+      background: rgba(0,0,0,0.3);
+      border-color: rgba(242,234,211,0.35);
+      color: var(--paper);
+    }
+    .hero-sub { font-size: 16.5px; margin-bottom: 24px; color: rgba(242,234,211,0.92); }
+    .hero-cta { gap: 10px; margin-bottom: 16px; }
     .hero-cta .btn { padding: 13px 18px; font-size: 10.5px; width: 100%; justify-content: space-between; }
-    .hero-meta { gap: 14px; }
+    .hero-cta .btn-primary { background: var(--clay); color: var(--paper); }
+    .hero-cta .btn-ghost { color: var(--paper); border-color: rgba(242,234,211,0.55); }
+    .hero-contact { color: rgba(242,234,211,0.8); margin-bottom: 24px; }
+    .hero-meta { gap: 14px; border-top-color: rgba(242,234,211,0.25); }
     .hero-meta > div { flex: 1 1 calc(50% - 7px); min-width: 120px; }
-    .hero-meta .v { font-size: 20px; }
-    .hero-meta .l { font-size: 9px; }
-    .hero-img-wrap { aspect-ratio: 4/5; }
-    .hero-img-cap .place { font-size: 22px; }
-    .hero-img-cap .coord { font-size: 9px; }
-    .hero-corner-tape { font-size: 9px; padding: 6px 10px; }
+    .hero-meta .v { font-size: 20px; color: var(--paper); }
+    .hero-meta .l { font-size: 9px; color: rgba(242,234,211,0.7); }
 
     /* Marquee — smaller, faster */
     .marquee { padding: 16px 0; }
@@ -1505,7 +1534,8 @@
     /* Video section */
     .video-head { grid-template-columns: 1fr; gap: 14px; margin-bottom: 22px; }
     .video-head .meta { text-align: left; font-size: 10px; }
-    .video-frame .play-btn { width: 68px; height: 68px; font-size: 20px; }
+    .video-frame .play-btn { width: 68px; height: 68px; }
+    .video-frame .play-btn svg { width: 22px; height: 22px; }
     .video-frame .corner, .video-frame .corner-right { font-size: 9.5px; left: 14px; top: 14px; right: 14px; }
     .video-frame .lower { left: 14px; right: 14px; bottom: 14px; }
     .video-frame .lower h3 { font-size: 22px; max-width: 60%; }
@@ -1877,7 +1907,9 @@ CLICK PARA REPRODUCIR</div>
         @santi_skss
       </div>
 
-      <div class="play-btn" aria-label="Reproducir vídeo">▶</div>
+      <div class="play-btn" aria-label="Reproducir vídeo">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      </div>
 
       <div class="lower">
         <h3>
