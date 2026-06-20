@@ -1,0 +1,17 @@
+# Respaldo de fotos originales (pesadas) — no se publican
+fotos-originales/
+
+# Copias de seguridad y temporales
+index.backup-*.html
+*.stackdump
+.DS_Store
+
+# Archivos internos / no usados en la web pública
+CLAUDE.md
+Media kit · Santi.html
+Santi · web personal.html
+Santi · móvil.html
+
+# Node / build
+node_modules/
+dist/
