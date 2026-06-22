@@ -1031,6 +1031,94 @@
     line-height: 1.5;
   }
 
+  .stats-90 {
+    margin-top: 28px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+  .stats-90 .label {
+    display: block;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bark-soft);
+    margin-bottom: 16px;
+  }
+  .stats-90 .metrics {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+  .stats-90 .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .stats-90 .metric .val {
+    font-family: 'Instrument Serif', serif;
+    font-size: 28px;
+    letter-spacing: -0.01em;
+  }
+  .stats-90 .metric .unit {
+    font-size: 14px;
+    color: var(--bark-soft);
+  }
+  .stats-90 .metric .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bark-soft);
+  }
+
+  .geo-breakdown {
+    margin-top: 26px;
+    padding-top: 22px;
+    border-top: 1px solid var(--line);
+  }
+  .geo-breakdown .label {
+    display: block;
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--bark-soft);
+    margin-bottom: 14px;
+  }
+  .geo-breakdown .locations {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .geo-breakdown .location {
+    display: grid;
+    grid-template-columns: 140px 1fr auto;
+    gap: 12px;
+    align-items: center;
+  }
+  .geo-breakdown .location .place {
+    font-family: 'Instrument Serif', serif;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+  }
+  .geo-breakdown .location .bar {
+    height: 5px;
+    background: var(--paper-deep);
+    border-radius: 99px;
+    overflow: hidden;
+  }
+  .geo-breakdown .location .bar > div {
+    height: 100%;
+    background: var(--clay);
+    border-radius: 99px;
+  }
+  .geo-breakdown .location .pct {
+    font-family: 'Instrument Serif', serif;
+    font-size: 15px;
+    letter-spacing: -0.01em;
+    text-align: right;
+    min-width: 40px;
+  }
+
   .audience {
     margin-top: 18px;
     padding: 16px;
@@ -1590,6 +1678,14 @@
     .platform .bar { grid-column: 1 / -1; grid-row: 2; margin-top: 4px; }
     .stats-extras .v { font-size: 22px; }
     .stats-extras .l { font-size: 9px; }
+    .stats-90 { margin-top: 20px; padding-top: 16px; }
+    .stats-90 .metrics { grid-template-columns: 1fr 1fr; gap: 16px; }
+    .stats-90 .metric .val { font-size: 22px; }
+    .geo-breakdown { margin-top: 20px; padding-top: 16px; }
+    .geo-breakdown .location { grid-template-columns: auto 1fr auto; gap: 10px; }
+    .geo-breakdown .location .place { font-size: 13px; }
+    .geo-breakdown .location .bar { grid-column: 1 / -1; order: 3; margin-top: 6px; }
+    .geo-breakdown .location .pct { font-size: 13px; min-width: auto; text-align: right; }
     .media-kit { padding: 18px; gap: 14px; }
     .media-kit .ico { width: 40px; height: 40px; font-size: 18px; }
     .media-kit .t .h { font-size: 18px; }
@@ -2113,7 +2209,7 @@ CLICK PARA REPRODUCIR</div>
       <div class="stats-card reveal">
         <div class="head">
           <span class="t">Audiencia</span>
-          <span class="upd">+14 MIL PERSONAS</span>
+          <span class="upd">+14.5 MIL PERSONAS</span>
         </div>
 
         <div class="platform">
@@ -2122,7 +2218,7 @@ CLICK PARA REPRODUCIR</div>
             <span class="h">@santi_skss</span>
           </div>
           <div class="bar"><div style="width: 100%"></div></div>
-          <div class="num">10,7<span class="unit">k</span></div>
+          <div class="num">11<span class="unit">k</span></div>
         </div>
 
         <div class="platform">
@@ -2131,7 +2227,52 @@ CLICK PARA REPRODUCIR</div>
             <span class="h">@santi.skss</span>
           </div>
           <div class="bar"><div style="width: 32%"></div></div>
-          <div class="num">3,4<span class="unit">k</span></div>
+          <div class="num">3,5<span class="unit">k</span></div>
+        </div>
+
+        <div class="stats-90">
+          <div class="label mono">Últimos 90 días · 24 mar — 21 jun</div>
+          <div class="metrics">
+            <div class="metric">
+              <span class="val">4,71<span class="unit">M</span></span>
+              <span class="lbl">Visualizaciones</span>
+            </div>
+            <div class="metric">
+              <span class="val">62,9<span class="unit">k</span></span>
+              <span class="lbl">Interacciones</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="geo-breakdown">
+          <div class="label mono">Audiencia por ubicación</div>
+          <div class="locations">
+            <div class="location">
+              <span class="place">España</span>
+              <div class="bar"><div style="width: 100%"></div></div>
+              <span class="pct">79%</span>
+            </div>
+            <div class="location">
+              <span class="place">Las Palmas</span>
+              <div class="bar"><div style="width: 8.2%"></div></div>
+              <span class="pct">6.5%</span>
+            </div>
+            <div class="location">
+              <span class="place">Madrid</span>
+              <div class="bar"><div style="width: 6.3%"></div></div>
+              <span class="pct">5%</span>
+            </div>
+            <div class="location">
+              <span class="place">San Cristóbal de la Laguna</span>
+              <div class="bar"><div style="width: 5.6%"></div></div>
+              <span class="pct">4.4%</span>
+            </div>
+            <div class="location">
+              <span class="place">Santa Cruz de Tenerife</span>
+              <div class="bar"><div style="width: 4.8%"></div></div>
+              <span class="pct">3.8%</span>
+            </div>
+          </div>
         </div>
       </div>
     </div>
