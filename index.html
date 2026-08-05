@@ -1221,9 +1221,17 @@
     text-align: right;
   }
   .perks .grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
   }
-  @media (max-width: 820px) { .perks .grid { grid-template-columns: 1fr; } }
+  /* En 2 columnas la tercera tarjeta ocupa el ancho para no dejar hueco */
+  @media (max-width: 1080px) {
+    .perks .grid { grid-template-columns: 1fr 1fr; }
+    .perks .grid .perk:nth-child(3) { grid-column: 1 / -1; }
+  }
+  @media (max-width: 820px) {
+    .perks .grid { grid-template-columns: 1fr; }
+    .perks .grid .perk:nth-child(3) { grid-column: auto; }
+  }
   .perk {
     position: relative;
     border-radius: 8px;
@@ -2315,9 +2323,25 @@ CLICK PARA REPRODUCIR</div>
             <span class="go">Comprar <span class="arr">→</span></span>
           </div>
         </a>
+
+        <a class="perk" href="https://maverickssurfcamp.com" target="_blank" rel="noopener" data-code="SANTI10">
+          <div class="top">
+            <span>03 · surfcamp</span>
+            <span class="kind">maverickssurfcamp.com</span>
+          </div>
+          <div class="name">Mavericks <em>Surfcamp</em></div>
+          <div class="desc">Semanas de surf con la casa, las olas y la gente ya resueltas. Justo el plan de quedar fuera, pero durmiendo cerca del pico.</div>
+          <div class="row">
+            <div class="code-wrap">
+              <span class="l">Código · 10% dto.</span>
+              <span class="code"><span class="val">SANTI10</span><span class="copy">copiar</span></span>
+            </div>
+            <span class="go">Reservar <span class="arr">→</span></span>
+          </div>
+        </a>
       </div>
 
-      <p class="small">· haz click en el código: se copia y te lleva a la tienda · enlaces de afiliado</p>
+      <p class="small">· haz click en el código: se copia y te lleva a la web · enlaces de afiliado</p>
     </div>
   </div>
 </section>
