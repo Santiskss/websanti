@@ -6,8 +6,8 @@
 
 <!-- ===== SEO ===== -->
 <title>Santi · creador outdoor en Canarias | Aventura, rutas y comunidad</title>
-<meta name="description" content="Santi (@santi_skss): creador outdoor y explorador de las islas atlánticas. Somos +180 mil personas saliendo fuera. Rutas, surf, sorteos y la comunidad TagoMap desde Canarias y Madeira." />
-<meta name="keywords" content="Santi, santi_skss, outdoor Canarias, aventura, rutas Canarias, surf La Palma, Madeira, comunidad outdoor, TagoMap, sorteo La Palma" />
+<meta name="description" content="Santi (@santi_skss): creador outdoor y explorador de las islas atlánticas. Somos +180 mil personas saliendo fuera. Rutas, surf, viajes en grupo y la comunidad TagoMap desde Canarias y Madeira." />
+<meta name="keywords" content="Santi, santi_skss, outdoor Canarias, aventura, rutas Canarias, surf La Palma, Madeira, comunidad outdoor, TagoMap, viaje Maldivas, Mango Trips" />
 <meta name="author" content="Santi" />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#2A3320" />
@@ -21,7 +21,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Santi · @santi_skss" />
 <meta property="og:title" content="Santi · creador outdoor en Canarias" />
-<meta property="og:description" content="Somos +180 mil personas saliendo fuera. Rutas, surf, sorteos y comunidad desde las islas atlánticas." />
+<meta property="og:description" content="Somos +180 mil personas saliendo fuera. Rutas, surf, viajes y comunidad desde las islas atlánticas." />
 <meta property="og:url" content="https://santiaventuras.com/" />
 <meta property="og:image" content="https://santiaventuras.com/fotos/hero-santi-madeira.jpeg" />
 <meta property="og:image:alt" content="Santi en Madeira" />
@@ -30,7 +30,7 @@
 <!-- ===== Twitter / X ===== -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Santi · creador outdoor en Canarias" />
-<meta name="twitter:description" content="Somos +180 mil personas saliendo fuera. Rutas, surf, sorteos y comunidad desde las islas atlánticas." />
+<meta name="twitter:description" content="Somos +180 mil personas saliendo fuera. Rutas, surf, viajes y comunidad desde las islas atlánticas." />
 <meta name="twitter:image" content="https://santiaventuras.com/fotos/hero-santi-madeira.jpeg" />
 
 <!-- ===== Datos estructurados (Google) ===== -->
@@ -819,28 +819,212 @@
   .tagoror .glyphs span:last-child::after { display: none; }
 
   /* ───────────────────────────────────────────────────────── */
-  /*  Sorteo · La Palma Tour Experience                       */
+  /*  Maldivas · Mango Trips · 25–30 octubre                  */
   /* ───────────────────────────────────────────────────────── */
-  .sorteo h2 { font-size: clamp(56px, 9vw, 132px); }
-  .sorteo .panel p {
+  .maldivas h2 { font-size: clamp(56px, 9vw, 132px); }
+
+  /* vídeo de fondo (vertical 9:16, recortado a sangre) */
+  .maldivas .bg-vid {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    object-position: center;
+    pointer-events: none;
+    /* menos oscuro que .tagoror .bg: el agua turquesa aguanta más luz */
+    filter: brightness(0.68) saturate(1.05);
+  }
+  /* a cambio, el velo de encima pesa un punto más que en las fotos */
+  .maldivas .grain {
+    background:
+      radial-gradient(ellipse at 30% 30%, rgba(185,106,61,0.16) 0%, transparent 55%),
+      linear-gradient(180deg, rgba(0,0,0,0.52) 0%, rgba(0,0,0,0.86) 100%);
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .maldivas .bg-vid { display: none; }
+  }
+
+  .maldivas .panel p {
     font-family: 'Newsreader', serif;
     font-size: 16px; line-height: 1.6;
     color: rgba(242,234,211,0.78);
     max-width: none;
     margin: 0 0 22px;
   }
-  .sorteo .panel .cta {
+  .maldivas .panel .cta {
     display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    width: 100%;
     padding: 16px 22px;
     background: var(--clay); color: var(--paper);
-    border-radius: 99px;
+    border: none; border-radius: 99px;
     font-family: 'JetBrains Mono', monospace;
     font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    text-align: left;
+    cursor: pointer;
     transition: background 0.2s ease;
   }
-  .sorteo .panel .cta:hover { background: var(--clay-deep); }
-  .sorteo .panel .cta .arr { transition: transform 0.2s ease; }
-  .sorteo .panel .cta:hover .arr { transform: translateX(4px); }
+  .maldivas .panel .cta:hover { background: var(--clay-deep); }
+  .maldivas .panel .cta .arr { transition: transform 0.2s ease; }
+  .maldivas .panel .cta:hover .arr { transform: translateX(4px); }
+
+  /* ───────────────────────────────────────────────────────── */
+  /*  Mensaje automático · tarjeta tipo chat                  */
+  /* ───────────────────────────────────────────────────────── */
+  .chat-overlay {
+    position: fixed; inset: 0; z-index: 200;
+    display: flex; align-items: center; justify-content: center;
+    padding: 24px;
+    background: rgba(15,18,11,0.74);
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+    opacity: 0;
+    transition: opacity 0.25s ease;
+  }
+  .chat-overlay[hidden] { display: none; }
+  .chat-overlay.open { opacity: 1; }
+
+  .chat-card {
+    width: 100%; max-width: 460px;
+    max-height: min(84vh, 720px);
+    display: flex; flex-direction: column;
+    background: var(--forest);
+    border: 1px solid rgba(242,234,211,0.16);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    transform: translateY(14px) scale(0.985);
+    transition: transform 0.28s cubic-bezier(0.2,0.7,0.3,1);
+  }
+  .chat-overlay.open .chat-card { transform: none; }
+
+  .chat-head {
+    flex: none;
+    display: flex; align-items: center; gap: 12px;
+    padding: 14px 16px;
+    background: var(--forest-mid);
+    border-bottom: 1px solid rgba(242,234,211,0.12);
+  }
+  .chat-av {
+    flex: none;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--clay); color: var(--paper);
+    display: grid; place-items: center;
+    font-family: 'Instrument Serif', serif; font-size: 19px;
+  }
+  .chat-who { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+  .chat-who strong {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 15px; font-weight: 500; color: var(--paper);
+  }
+  .chat-who em {
+    font-style: normal;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(242,234,211,0.5);
+    display: flex; align-items: center; gap: 6px;
+  }
+  .chat-who em .d {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #7CC06A;
+    animation: chatPulse 2s infinite;
+  }
+  @keyframes chatPulse {
+    0%   { box-shadow: 0 0 0 0 rgba(124,192,106,0.55); }
+    70%  { box-shadow: 0 0 0 7px rgba(124,192,106,0); }
+    100% { box-shadow: 0 0 0 0 rgba(124,192,106,0); }
+  }
+  .chat-x {
+    flex: none;
+    background: none; border: none; cursor: pointer;
+    color: rgba(242,234,211,0.55);
+    font-size: 15px; line-height: 1;
+    padding: 6px; border-radius: 6px;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .chat-x:hover { color: var(--paper); background: rgba(242,234,211,0.1); }
+
+  .chat-body {
+    flex: 1 1 auto;
+    overflow-y: auto;
+    padding: 18px 16px 20px;
+    display: flex; flex-direction: column; gap: 10px;
+    background:
+      radial-gradient(ellipse at 20% 0%, rgba(107,121,73,0.18) 0%, transparent 60%),
+      var(--forest);
+  }
+  .chat-body .msg {
+    margin: 0;
+    max-width: 88%;
+    align-self: flex-start;
+    padding: 12px 15px;
+    background: rgba(242,234,211,0.09);
+    border: 1px solid rgba(242,234,211,0.1);
+    border-radius: 14px 14px 14px 4px;
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 15.5px; line-height: 1.55;
+    color: rgba(242,234,211,0.92);
+    opacity: 0; transform: translateY(8px);
+    transition: opacity 0.32s ease, transform 0.32s ease;
+  }
+  .chat-body .msg.show { opacity: 1; transform: none; }
+  .chat-body .msg strong { color: var(--paper); font-weight: 600; }
+
+  .chat-body .msg-link {
+    align-self: stretch; max-width: 100%;
+    display: flex; flex-direction: column; gap: 4px;
+    text-decoration: none;
+    background: var(--clay);
+    border-color: var(--clay);
+    border-radius: 14px;
+    transition: opacity 0.32s ease, transform 0.32s ease, background 0.2s ease;
+  }
+  .chat-body .msg-link:hover { background: var(--clay-deep); border-color: var(--clay-deep); }
+  .chat-body .msg-link.wa { background: #1E7A4B; border-color: #1E7A4B; }
+  .chat-body .msg-link.wa:hover { background: #17603A; border-color: #17603A; }
+  .chat-body .msg-link .lbl {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px; letter-spacing: 0.13em; text-transform: uppercase;
+    color: var(--paper);
+  }
+  .chat-body .msg-link .url {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.03em;
+    color: rgba(242,234,211,0.72);
+    word-break: break-all;
+  }
+
+  .chat-foot {
+    flex: none;
+    display: flex; justify-content: center;
+    padding: 12px 16px 14px;
+    background: var(--forest-mid);
+    border-top: 1px solid rgba(242,234,211,0.12);
+  }
+  .chat-copy {
+    background: none;
+    border: 1px solid rgba(242,234,211,0.22);
+    color: rgba(242,234,211,0.75);
+    border-radius: 99px; padding: 9px 18px; cursor: pointer;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+  .chat-copy:hover { color: var(--paper); border-color: rgba(242,234,211,0.5); }
+
+  body.chat-lock { overflow: hidden; }
+
+  @media (max-width: 480px) {
+    .chat-overlay { padding: 0; align-items: flex-end; }
+    .chat-card {
+      max-width: none; max-height: 92vh;
+      border-radius: 14px 14px 0 0; border-bottom: none;
+    }
+    .chat-body .msg { font-size: 15px; max-width: 92%; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .chat-overlay, .chat-card, .chat-body .msg { transition: none; }
+    .chat-body .msg { opacity: 1; transform: none; }
+    .chat-who em .d { animation: none; }
+  }
 
   /* ───────────────────────────────────────────────────────── */
   /*  Manifiesto · separador editorial (fondo claro)          */
@@ -878,7 +1062,7 @@
   }
 
   /* ───────────────────────────────────────────────────────── */
-  /*  TagoMap (app) · estilo sólido, distinto al Sorteo       */
+  /*  TagoMap (app) · estilo sólido, distinto al de Maldivas   */
   /* ───────────────────────────────────────────────────────── */
   .tagomap { background: var(--forest); }
   .tagomap .bg {
@@ -1655,18 +1839,18 @@
     .pcard .meta { font-size: 9px; }
     .pcard .body { padding: 14px; }
 
-    /* Tagoror + Sorteo */
+    /* Tagoror + Maldivas */
     .tagoror { min-height: auto; }
     .tagoror h2 { font-size: 22vw; margin-bottom: 18px; }
-    .sorteo h2 { font-size: clamp(40px, 12vw, 64px); margin-bottom: 16px; }
+    .maldivas h2 { font-size: clamp(40px, 12vw, 64px); margin-bottom: 16px; }
     .tagoror .subline { font-size: 20px; margin-bottom: 24px; }
-    .sorteo .subline { font-size: 19px; }
+    .maldivas .subline { font-size: 19px; }
     .tagoror p { font-size: 15.5px; }
     .tagoror .panel { padding: 20px; }
     .tagoror .panel form { flex-direction: column; gap: 10px; }
     .tagoror .panel input { font-size: 15px; padding: 13px 16px; }
     .tagoror .panel button { padding: 13px 18px; width: 100%; }
-    .sorteo .panel .cta { padding: 14px 18px; }
+    .maldivas .panel .cta { padding: 14px 18px; }
     .tagoror .glyphs { font-size: 24px; gap: 12px; }
 
     /* Marcas */
@@ -1790,7 +1974,7 @@
   <div class="links" id="navLinks">
     <a href="#inicio">Inicio</a>
     <a href="#quien">Quién</a>
-    <a href="#sorteo">Sorteo</a>
+    <a href="#maldivas">Maldivas</a>
     <a href="#tagoror">TagoMap</a>
     <a href="#marcas">Marcas</a>
     <a href="#comunidad">Comunidad</a>
@@ -1844,8 +2028,8 @@
     </p>
 
     <div class="hero-cta">
-      <a href="#sorteo" class="btn btn-primary">
-        Sorteo · La Palma <span class="arrow">→</span>
+      <a href="#maldivas" class="btn btn-primary">
+        Maldivas · 25–30 oct <span class="arrow">→</span>
       </a>
       <a href="#quien" class="btn btn-ghost">
         Quién soy <span class="arrow">↓</span>
@@ -2031,69 +2215,111 @@ CLICK PARA REPRODUCIR</div>
 
 
 <!-- ============================================================ -->
-<!--  SORTEO · LA PALMA TOUR EXPERIENCE                           -->
+<!--  MALDIVAS · MANGO TRIPS · 25–30 OCTUBRE                     -->
 <!-- ============================================================ -->
-<section class="tagoror sorteo" id="sorteo" data-screen-label="03 Sorteo">
-  <div class="bg" style="background-image: url('fotos/sorteo-cueva-bonita.jpeg');"></div>
+<section class="tagoror maldivas" id="maldivas" data-screen-label="03 Maldivas">
+  <!-- póster: primer fotograma; también es el fallback si el vídeo no carga -->
+  <div class="bg" style="background-image: url('fotos/maldivas-poster.jpg');"></div>
+  <video class="bg bg-vid" autoplay muted loop playsinline preload="metadata"
+         poster="fotos/maldivas-poster.jpg" aria-hidden="true" tabindex="-1">
+    <source src="fotos/maldivas-tiburones.mp4" type="video/mp4">
+  </video>
   <div class="grain"></div>
 
   <div class="inner">
     <div>
       <div class="eyebrow">
         <span class="mono num">03</span>
-        <span class="mono">Sorteo</span>
+        <span class="mono">Viaje</span>
         <span class="rule"></span>
-        <span class="mono">por venir · 2026</span>
+        <span class="mono">25–30 oct · 2026</span>
       </div>
 
       <h2 class="display">
-        La Palma<br><em>Tour Experience</em>
+        Maldivas<br><em>con Mango Trips</em>
       </h2>
 
       <p class="subline">
-        Un sorteo para vivir La Palma como nunca.<br>
-        Cuevas, mar y la isla entera.
+        Una isla local, no un resort.<br>
+        El país de verdad.
       </p>
 
       <p>
-        Sorteo una experiencia completa por La Palma de la mano de
-        <em>Vive La Palma Tour Experience</em>. En mi perfil de Instagram
-        cuento cómo participar y las fechas.
+        Playas paradisíacas, atardeceres, cocos, gente local y un mar lleno de
+        vida. Tiburones desde el muelle, mantas cerca de la playa y nadar con
+        <em>tiburón ballena</em>. Del 25 al 30 de octubre.
       </p>
 
       <div class="glyphs">
-        <span>cuevas</span>
-        <span>mar</span>
-        <span>isla</span>
+        <span>tiburones</span>
+        <span>mantas</span>
+        <span>isla local</span>
       </div>
     </div>
 
     <div>
       <div class="panel">
         <div class="panel-head">
-          <span class="lbl">Sorteo · La Palma</span>
-          <span class="live"><span class="d"></span>Muy pronto</span>
+          <span class="lbl">Maldivas · 25–30 oct</span>
+          <span class="live"><span class="d"></span>Plazas abiertas</span>
         </div>
 
         <p>
-          Cómo participar, premios y fechas se publican en mi Instagram.
-          Síguelo para no perderte el sorteo de <em>Vive La Palma Tour
-          Experience</em>.
+          Pincha y te cuento el viaje entero al momento: qué vamos a vivir,
+          dónde está toda la info y cómo entrar al grupo de WhatsApp.
+          Las plazas vuelan.
         </p>
 
-        <a class="cta" href="https://instagram.com/santi_skss" target="_blank" rel="noopener">
-          <span>Ver el sorteo en Instagram</span>
+        <button class="cta" type="button" id="maldivasBtn" aria-haspopup="dialog">
+          <span>Quiero ir a Maldivas</span>
           <span class="arr">→</span>
-        </a>
+        </button>
 
         <div class="micro">
           <span>@santi_skss</span>
-          <span>Vive La Palma Tour Experience</span>
+          <span>Mango Trips</span>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- ============================================================ -->
+<!--  MENSAJE AUTOMÁTICO · tarjeta tipo chat (Maldivas)          -->
+<!-- ============================================================ -->
+<div class="chat-overlay" id="maldivasChat" role="dialog" aria-modal="true"
+     aria-labelledby="chatWho" hidden>
+  <div class="chat-card">
+    <div class="chat-head">
+      <span class="chat-av" aria-hidden="true">S</span>
+      <span class="chat-who">
+        <strong id="chatWho">Santi</strong>
+        <em><span class="d"></span>en línea</em>
+      </span>
+      <button class="chat-x" type="button" id="chatClose" aria-label="Cerrar el mensaje">✕</button>
+    </div>
+
+    <div class="chat-body" id="chatBody">
+      <p class="msg">¡Holaaa!🤩 Qué ilusión que quieras venir a vivir esta aventura con nosotros🇲🇻🌴</p>
+      <p class="msg">Nos vamos a una isla local de Maldivas para vivir el país de verdad: playas paradisíacas, atardeceres, cocos, gente local y un mar lleno de vida 🐢🦈🤿</p>
+      <p class="msg">Y sí… tiburones desde el muelle, mantas cerca de la playa y nadar con tiburón ballena🐋🔥</p>
+      <p class="msg">Toda la información del viaje está aquí. Asegúrate de elegir la fecha del <strong>25 al 30 de octubre</strong> 👇</p>
+      <a class="msg msg-link" href="https://mangotrips.es/destinos/maldivas" target="_blank" rel="noopener">
+        <span class="lbl">🌐 Ver toda la info del viaje</span>
+        <span class="url">mangotrips.es/destinos/maldivas</span>
+      </a>
+      <p class="msg">En cuanto estés 100% segur@, avísame y te metes direct@ al grupo de WhatsApp del viaje 📲 ¡Corre que vuela, las plazas se van a llenar rápido! 🏃💨</p>
+      <a class="msg msg-link wa" href="https://chat.whatsapp.com/KIvXtcaK5izFV646waajPz?mode=gi_t" target="_blank" rel="noopener">
+        <span class="lbl">📲 Entrar al grupo de WhatsApp</span>
+        <span class="url">chat.whatsapp.com</span>
+      </a>
+    </div>
+
+    <div class="chat-foot">
+      <button class="chat-copy" type="button" id="chatCopy">Copiar el mensaje</button>
+    </div>
+  </div>
+</div>
 
 <!-- ============================================================ -->
 <!--  MANIFIESTO · separador editorial                            -->
@@ -2461,7 +2687,7 @@ desde las islas atlánticas.</p>
         <ul>
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#quien">Quién soy</a></li>
-          <li><a href="#sorteo">Sorteo</a></li>
+          <li><a href="#maldivas">Maldivas</a></li>
           <li><a href="#tagoror">TagoMap</a></li>
         </ul>
       </div>
@@ -2470,7 +2696,7 @@ desde las islas atlánticas.</p>
         <h4>Trabajo</h4>
         <ul>
           <li><a href="#marcas">Para marcas</a></li>
-          <li><a href="#sorteo">Sorteo · La Palma</a></li>
+          <li><a href="#maldivas">Viaje · Maldivas</a></li>
           <li><a href="mailto:santiagoconcep19@gmail.com">santiagoconcep19@gmail.com</a></li>
           <li><a href="#comunidad">Comunidad</a></li>
         </ul>
@@ -2596,6 +2822,93 @@ desde las islas atlánticas.</p>
       }
     });
   }
+
+  // ── Maldivas · mensaje automático al clicar ──
+  (function () {
+    const trigger = document.getElementById('maldivasBtn');
+    const overlay = document.getElementById('maldivasChat');
+    if (!trigger || !overlay) return;
+
+    const card    = overlay.querySelector('.chat-card');
+    const body    = document.getElementById('chatBody');
+    const closeEl = document.getElementById('chatClose');
+    const copyEl  = document.getElementById('chatCopy');
+    const msgs    = body.querySelectorAll('.msg');
+    const reduce  = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let lastFocus = null;
+    let timers    = [];
+    let hideTimer = null;
+
+    // el mensaje en texto plano, reconstruido desde las burbujas
+    const fullText = Array.from(body.children).map(function (el) {
+      return el.classList.contains('msg-link') ? el.href : el.textContent.trim();
+    }).join('\n\n');
+
+    function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+
+    function openChat() {
+      lastFocus = document.activeElement;
+      clearTimeout(hideTimer);
+      overlay.hidden = false;
+      document.body.classList.add('chat-lock');
+      body.scrollTop = 0;
+      clearTimers();
+      msgs.forEach(function (m) { m.classList.remove('show'); });
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () { overlay.classList.add('open'); });
+      });
+      // van cayendo una a una, como un chat de verdad
+      msgs.forEach(function (m, i) {
+        timers.push(setTimeout(function () {
+          m.classList.add('show');
+          body.scrollTop = body.scrollHeight;
+        }, reduce ? 0 : 140 + i * 190));
+      });
+      closeEl.focus();
+    }
+
+    function closeChat() {
+      clearTimers();
+      overlay.classList.remove('open');
+      document.body.classList.remove('chat-lock');
+      hideTimer = setTimeout(function () { overlay.hidden = true; }, reduce ? 0 : 250);
+      if (lastFocus) lastFocus.focus();
+    }
+
+    trigger.addEventListener('click', openChat);
+    closeEl.addEventListener('click', closeChat);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) closeChat(); });
+
+    document.addEventListener('keydown', function (e) {
+      if (overlay.hidden) return;
+      if (e.key === 'Escape') { closeChat(); return; }
+      if (e.key !== 'Tab') return;
+      const f = card.querySelectorAll('a[href], button');
+      if (!f.length) return;
+      const first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    });
+
+    copyEl.addEventListener('click', function () {
+      navigator.clipboard?.writeText(fullText).then(function () {
+        const prev = copyEl.textContent;
+        copyEl.textContent = 'copiado ✓';
+        setTimeout(function () { copyEl.textContent = prev; }, 1800);
+      });
+    });
+  })();
+
+  // ── Vídeo de fondo (Maldivas): arrancar y pausar fuera de pantalla ──
+  (function () {
+    const vid = document.querySelector('.maldivas .bg-vid');
+    if (!vid) return;
+    const play = function () { const p = vid.play(); if (p) p.catch(function () {}); };
+    play();
+    new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { e.isIntersecting ? play() : vid.pause(); });
+    }, { threshold: 0.05 }).observe(vid);
+  })();
 
   // ── Bio video: click para reproducir ──
   document.querySelectorAll('.bio-video[data-yt]').forEach(function(wrap) {
