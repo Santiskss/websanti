@@ -6,8 +6,8 @@
 
 <!-- ===== SEO ===== -->
 <title>Santi · creador outdoor en Canarias | Aventura, rutas y comunidad</title>
-<meta name="description" content="Santi (@santi_skss): creador outdoor y explorador de las islas atlánticas. Somos +180 mil personas saliendo fuera. Rutas, surf, viajes en grupo y la comunidad TagoMap desde Canarias y Madeira." />
-<meta name="keywords" content="Santi, santi_skss, outdoor Canarias, aventura, rutas Canarias, surf La Palma, Madeira, comunidad outdoor, TagoMap, viaje Maldivas, Mango Trips" />
+<meta name="description" content="Santi (@santi_skss): creador outdoor y explorador de las islas atlánticas. Somos +180 mil personas saliendo fuera. Rutas, surf, viajes en grupo y PyroScan, detección temprana de incendios con IA, desde Canarias y Madeira." />
+<meta name="keywords" content="Santi, santi_skss, outdoor Canarias, aventura, rutas Canarias, surf La Palma, Madeira, comunidad outdoor, PyroScan, incendios IA, viaje Maldivas, Mango Trips" />
 <meta name="author" content="Santi" />
 <meta name="robots" content="index, follow" />
 <meta name="theme-color" content="#2A3320" />
@@ -770,29 +770,6 @@
     width: 8px; height: 8px; border-radius: 99px; background: var(--clay);
     animation: pulse-clay 1.8s infinite;
   }
-  .tagoror .panel form {
-    display: flex; gap: 8px;
-  }
-  .tagoror .panel input {
-    flex: 1; padding: 14px 16px;
-    background: rgba(0,0,0,0.25);
-    border: 1px solid rgba(242,234,211,0.2);
-    color: var(--paper);
-    border-radius: 99px;
-    font-family: 'Newsreader', serif;
-    font-size: 15px;
-  }
-  .tagoror .panel input::placeholder { color: rgba(242,234,211,0.4); }
-  .tagoror .panel input:focus { outline: none; border-color: var(--clay); }
-  .tagoror .panel button {
-    padding: 14px 22px;
-    background: var(--clay); color: var(--paper);
-    border: none; border-radius: 99px;
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
-    white-space: nowrap;
-  }
-  .tagoror .panel button:hover { background: var(--clay-deep); }
   .tagoror .panel .micro {
     margin-top: 14px;
     font-family: 'JetBrains Mono', monospace;
@@ -1062,17 +1039,17 @@
   }
 
   /* ───────────────────────────────────────────────────────── */
-  /*  TagoMap (app) · estilo sólido, distinto al de Maldivas   */
+  /*  PyroScan · estilo sólido, distinto al de Maldivas         */
   /* ───────────────────────────────────────────────────────── */
-  .tagomap { background: var(--forest); }
-  .tagomap .bg {
+  .pyroscan { background: var(--forest); }
+  .pyroscan .bg {
     background-image:
       radial-gradient(circle at 78% 18%, rgba(107,121,73,0.45) 0%, transparent 55%),
       radial-gradient(circle at 12% 88%, rgba(185,106,61,0.28) 0%, transparent 50%),
       linear-gradient(160deg, #313B25 0%, #1B1F14 90%);
     filter: none;
   }
-  .tagomap .bg::after {
+  .pyroscan .bg::after {
     content: '';
     position: absolute; inset: 0;
     background-image:
@@ -1082,13 +1059,34 @@
     mask-image: radial-gradient(circle at 70% 40%, #000 0%, transparent 75%);
     -webkit-mask-image: radial-gradient(circle at 70% 40%, #000 0%, transparent 75%);
   }
-  .tagomap .grain { background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 100%); }
-  .tagomap h2 em { color: var(--moss); }
-  .tagomap .panel-head .live,
-  .tagomap .panel-head .live .d { color: var(--moss); background: none; }
-  .tagomap .panel-head .live .d { background: var(--moss); }
-  .tagomap .panel button { background: var(--moss); }
-  .tagomap .panel button:hover { background: #59663d; }
+  .pyroscan .grain { background: linear-gradient(180deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.45) 100%); }
+  .pyroscan h2 em { color: var(--moss); }
+  .pyroscan .panel-head .live,
+  .pyroscan .panel-head .live .d { color: var(--moss); background: none; }
+  .pyroscan .panel-head .live .d { background: var(--moss); }
+  .pyroscan .panel p {
+    font-family: 'Newsreader', serif;
+    font-size: 16px; line-height: 1.6;
+    color: rgba(242,234,211,0.78);
+    max-width: none;
+    margin: 0 0 22px;
+  }
+  .pyroscan .panel .cta {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    width: 100%;
+    padding: 16px 22px;
+    background: var(--moss); color: var(--paper);
+    border: none; border-radius: 99px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+    text-align: left;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  .pyroscan .panel .cta:hover { background: #59663d; }
+  .pyroscan .panel .cta .arr { transition: transform 0.2s ease; }
+  .pyroscan .panel .cta:hover .arr { transform: translateX(4px); }
 
   /* ───────────────────────────────────────────────────────── */
   /*  Para marcas                                             */
@@ -1847,10 +1845,7 @@
     .maldivas .subline { font-size: 19px; }
     .tagoror p { font-size: 15.5px; }
     .tagoror .panel { padding: 20px; }
-    .tagoror .panel form { flex-direction: column; gap: 10px; }
-    .tagoror .panel input { font-size: 15px; padding: 13px 16px; }
-    .tagoror .panel button { padding: 13px 18px; width: 100%; }
-    .maldivas .panel .cta { padding: 14px 18px; }
+    .maldivas .panel .cta, .pyroscan .panel .cta { padding: 14px 18px; }
     .tagoror .glyphs { font-size: 24px; gap: 12px; }
 
     /* Marcas */
@@ -1974,8 +1969,8 @@
   <div class="links" id="navLinks">
     <a href="#inicio">Inicio</a>
     <a href="#quien">Quién</a>
+    <a href="#pyroscan">PyroScan</a>
     <a href="#maldivas">Maldivas</a>
-    <a href="#tagoror">TagoMap</a>
     <a href="#marcas">Marcas</a>
     <a href="#comunidad">Comunidad</a>
   </div>
@@ -2167,6 +2162,73 @@ decidí formar parte de ella.</h2>
 </section>
 
 <!-- ============================================================ -->
+<!--  PYROSCAN · detección temprana de incendios con IA           -->
+<!-- ============================================================ -->
+<section class="tagoror pyroscan" id="pyroscan" data-screen-label="03 PyroScan">
+  <div class="bg"></div>
+  <div class="grain"></div>
+
+  <div class="inner">
+    <div>
+      <div class="eyebrow">
+        <span class="mono num">03</span>
+        <span class="mono">Nuevo proyecto</span>
+        <span class="rule"></span>
+        <span class="mono">2026 · La Palma</span>
+      </div>
+
+      <h2 class="display">
+        Pyro<em>Scan</em>
+      </h2>
+
+      <p class="subline">
+        El monte que recorro también se quema.<br>
+        Ahora lo vigilamos con IA.
+      </p>
+
+      <p>
+        Estamos montando PyroScan: una torre de control que vigila las
+        webcams públicas de la isla con un modelo de IA entrenado para
+        detectar humo, cruza focos de satélite, riesgo de incendio y
+        meteorología, y lo pone todo en un mapa en tiempo real. Detección
+        temprana, antes de que sea tarde.
+      </p>
+
+      <div class="glyphs">
+        <span>humo</span>
+        <span>satélite</span>
+        <span>IA</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="panel">
+        <div class="panel-head">
+          <span class="lbl">PyroScan · El Talentón</span>
+          <span class="live"><span class="d"></span>Compitiendo</span>
+        </div>
+
+        <p>
+          Estamos compitiendo en El Talentón con PyroScan. Cada voto nos
+          acerca a seguir construyendo la detección temprana de incendios
+          que Canarias necesita.
+        </p>
+
+        <a class="cta" href="https://votaeltalenton.com" target="_blank" rel="noopener">
+          <span>Quiero votar por PyroScan</span>
+          <span class="arr">→</span>
+        </a>
+
+        <div class="micro">
+          <span>@santi_skss</span>
+          <span>El Talentón · 2026</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================ -->
 <!--  VIDEO                                                        -->
 <!-- ============================================================ -->
 <section class="video-section">
@@ -2217,7 +2279,7 @@ CLICK PARA REPRODUCIR</div>
 <!-- ============================================================ -->
 <!--  MALDIVAS · MANGO TRIPS · 25–30 OCTUBRE                     -->
 <!-- ============================================================ -->
-<section class="tagoror maldivas" id="maldivas" data-screen-label="03 Maldivas">
+<section class="tagoror maldivas" id="maldivas" data-screen-label="04 Maldivas">
   <!-- póster: primer fotograma; también es el fallback si el vídeo no carga -->
   <div class="bg" style="background-image: url('fotos/maldivas-poster.jpg');"></div>
   <video class="bg bg-vid" autoplay muted loop playsinline preload="metadata"
@@ -2229,7 +2291,7 @@ CLICK PARA REPRODUCIR</div>
   <div class="inner">
     <div>
       <div class="eyebrow">
-        <span class="mono num">03</span>
+        <span class="mono num">04</span>
         <span class="mono">Viaje</span>
         <span class="rule"></span>
         <span class="mono">25–30 oct · 2026</span>
@@ -2335,69 +2397,6 @@ CLICK PARA REPRODUCIR</div>
       Apaga el móvil, sal de casa y mira alrededor. Lo bueno nunca estuvo dentro
       de una pantalla.
     </p>
-  </div>
-</section>
-
-<!-- ============================================================ -->
-<!--  TAGOMAP (app)                                                -->
-<!-- ============================================================ -->
-<section class="tagoror tagomap" id="tagoror" data-screen-label="04 TagoMap">
-  <div class="bg"></div>
-  <div class="grain"></div>
-
-  <div class="inner">
-    <div>
-      <div class="eyebrow">
-        <span class="mono num">04</span>
-        <span class="mono">Próximamente</span>
-        <span class="rule"></span>
-        <span class="mono">2026 · en construcción</span>
-      </div>
-
-      <h2 class="display">
-        Tago<em>Map</em>
-      </h2>
-
-      <p class="subline">
-        Una nueva forma de quedar con gente fuera.<br>
-        Algo está bajando del monte.
-      </p>
-
-      <p>
-        Todo lo que hago empieza por la misma pregunta: <em>¿y si quedamos
-        fuera?</em> TagoMap es la respuesta. No es una app de rutas ni una
-        red social. Es lo que viene después.
-      </p>
-
-      <p>
-        Más cerca de lo que crees. Apunta tu email aquí y serás de los primeros en saber más.
-      </p>
-
-      <div class="glyphs">
-        <span>quedar</span>
-        <span>juntos</span>
-        <span>fuera</span>
-      </div>
-    </div>
-
-    <div>
-      <div class="panel">
-        <div class="panel-head">
-          <span class="lbl">Lista de espera · 01</span>
-          <span class="live"><span class="d"></span>Esperando</span>
-        </div>
-
-        <form id="waitlist-form">
-          <input type="email" placeholder="tu@email.com" required />
-          <button type="submit">Quiero saber más</button>
-        </form>
-
-        <div class="micro">
-          <span>sin spam · sin reenvíos</span>
-          <span>Q3 · 2026</span>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
@@ -2687,8 +2686,8 @@ desde las islas atlánticas.</p>
         <ul>
           <li><a href="#inicio">Inicio</a></li>
           <li><a href="#quien">Quién soy</a></li>
+          <li><a href="#pyroscan">PyroScan</a></li>
           <li><a href="#maldivas">Maldivas</a></li>
-          <li><a href="#tagoror">TagoMap</a></li>
         </ul>
       </div>
 
@@ -2797,32 +2796,6 @@ desde las islas atlánticas.</p>
       }).catch(openStore);
     });
   });
-  // ── Waitlist form (Tagoror) ──
-  const waitlistForm = document.getElementById('waitlist-form');
-  if (waitlistForm) {
-    waitlistForm.addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const email = this.querySelector('input[type="email"]').value;
-      const btn = this.querySelector('button[type="submit"]');
-      btn.textContent = 'Enviando...';
-      btn.disabled = true;
-      try {
-        const res = await fetch('https://formspree.io/f/mdajzvze', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
-          body: JSON.stringify({ email })
-        });
-        if (res.ok) {
-          btn.textContent = 'Estás dentro ✓';
-          this.querySelector('input').value = '';
-        } else { throw new Error(); }
-      } catch {
-        btn.textContent = 'Error · intenta de nuevo';
-        setTimeout(() => { btn.textContent = 'Quiero saber más'; btn.disabled = false; }, 2500);
-      }
-    });
-  }
-
   // ── Maldivas · mensaje automático al clicar ──
   (function () {
     const trigger = document.getElementById('maldivasBtn');
