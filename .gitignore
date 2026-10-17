@@ -15,3 +15,7 @@ Santi · móvil.html
 # Node / build
 node_modules/
 dist/
+
+# Mediakit: solo para marcas, nunca público
+_privado/
+mediakit.html
