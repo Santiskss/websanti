@@ -219,6 +219,35 @@ ul{padding:0;list-style:none}
 .contacto p{margin-top:24px;font-size:19px;color:rgba(246,247,245,.75);max-width:26em}
 .mail{display:flex;flex-wrap:wrap;gap:12px;align-items:center;margin-top:32px}
 .mail a{font-size:clamp(18px,2vw,24px);font-weight:500;text-underline-offset:.2em}
+.form{margin-top:36px;display:grid;gap:18px;max-width:640px}
+.form .hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0}
+.tipo{border:0;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
+.tipo legend{color:rgba(246,247,245,.6);margin-bottom:10px;padding:0}
+.tipo label{position:relative;cursor:pointer}
+.tipo input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.tipo span{display:inline-flex;align-items:center;min-height:40px;padding:0 16px;border-radius:999px;border:1px solid rgba(246,247,245,.22);font-size:15px;transition:background-color .2s,border-color .2s,color .2s}
+.tipo label:hover span{border-color:rgba(246,247,245,.55)}
+.tipo input:checked+span{background:var(--espuma);color:var(--tinta);border-color:var(--espuma)}
+.tipo input:focus-visible+span{outline:2px solid var(--naranja);outline-offset:3px}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.f{display:grid;gap:8px}
+.f .mono{color:rgba(246,247,245,.6)}
+.f input,.f textarea{width:100%;font:400 17px/1.45 var(--sans);color:var(--espuma);background:rgba(246,247,245,.06);border:1px solid rgba(246,247,245,.18);border-radius:12px;padding:13px 14px;transition:border-color .2s,background-color .2s}
+.f textarea{resize:vertical;min-height:140px}
+.f input::placeholder,.f textarea::placeholder{color:rgba(246,247,245,.4)}
+.f input:hover,.f textarea:hover{border-color:rgba(246,247,245,.35)}
+.f input:focus,.f textarea:focus{outline:none;border-color:var(--naranja);background:rgba(246,247,245,.09)}
+.f [aria-invalid="true"]{border-color:#FF8A5C}
+.send{display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.send .btn{min-height:52px;padding-inline:28px;font-size:16px}
+.send .btn[disabled]{opacity:.6;cursor:progress}
+.contacto .estado{margin:0;font-size:16px;color:rgba(246,247,245,.85)}
+.contacto .estado.ok{color:#9BE3B0}
+.contacto .estado.err{color:#FF8A5C}
+.contacto p.alt{margin-top:4px;font-size:15px;color:rgba(246,247,245,.55)}
+.alt a{color:rgba(246,247,245,.8);text-underline-offset:.2em}
+.form.enviado .tipo,.form.enviado .row2,.form.enviado .f,.form.enviado .send .btn{display:none}
+@media (max-width:600px){.row2{grid-template-columns:1fr}}
 .contacto figure{overflow:hidden;border-radius:16px}
 .contacto figure img{width:100%;aspect-ratio:3/4;object-fit:cover}
 .foot{background:var(--tinta);color:rgba(246,247,245,.7);border-top:1px solid rgba(246,247,245,.12);padding-block:28px calc(28px + env(safe-area-inset-bottom,0px))}
@@ -404,11 +433,30 @@ ul{padding:0;list-style:none}
     <div>
       <div class="label mono" style="color:rgba(246,247,245,.6)"><b style="color:#FFB08F">08</b> Hablamos</div>
       <h2 id="h-contacto">¿Hacemos algo juntos?</h2>
-      <p>Marca, proyecto, charla o una locura de las buenas. Escríbeme y te contesto yo, sin agencias por medio.</p>
-      <div class="mail">
-        <a href="mailto:santiagoconcep19@gmail.com">santiagoconcep19@gmail.com</a>
-        <button class="btn btn-light" type="button" data-copy="santiagoconcep19@gmail.com">Copiar email</button>
-      </div>
+      <p>Marca, proyecto, charla o una locura de las buenas. Escríbeme aquí mismo y te contesto yo, sin agencias por medio.</p>
+      <form class="form" id="form-contacto" action="https://formsubmit.co/santiagoconcep19@gmail.com" method="POST" novalidate>
+        <input type="hidden" name="_subject" value="Mensaje nuevo desde santiaventuras.com">
+        <input type="hidden" name="_template" value="box">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <fieldset class="tipo">
+          <legend class="mono">¿De qué va?</legend>
+          <label><input type="radio" name="tipo" value="Marca" checked><span>Marca</span></label>
+          <label><input type="radio" name="tipo" value="Proyecto"><span>Proyecto</span></label>
+          <label><input type="radio" name="tipo" value="Charla"><span>Charla</span></label>
+          <label><input type="radio" name="tipo" value="Otra cosa"><span>Otra cosa</span></label>
+        </fieldset>
+        <div class="row2">
+          <label class="f"><span class="mono">Tu nombre</span><input name="nombre" type="text" autocomplete="name" required placeholder="Cómo te llamas"></label>
+          <label class="f"><span class="mono">Tu email</span><input name="email" type="email" autocomplete="email" required placeholder="Para poder contestarte"></label>
+        </div>
+        <label class="f"><span class="mono">Tu mensaje</span><textarea name="mensaje" rows="5" required placeholder="Cuéntame lo que tengas en mente, sin rollos"></textarea></label>
+        <div class="send">
+          <button class="btn btn-orange" type="submit">Enviar mensaje</button>
+          <p class="estado" role="status" aria-live="polite"></p>
+        </div>
+        <p class="alt">¿Prefieres tu correo? <a href="mailto:santiagoconcep19@gmail.com">santiagoconcep19@gmail.com</a></p>
+      </form>
     </div>
     <figure><img src="fotos/zermatt-feliz.jpg" width="1350" height="1800" loading="lazy" alt="Santi sonriendo con chaqueta roja y gafas de sol en las montañas de Zermatt"></figure>
   </div>
@@ -440,6 +488,22 @@ ul{padding:0;list-style:none}
   mp.addEventListener('click',function(e){if(e.target.closest('a'))setMenu(false)});
   document.addEventListener('click',function(e){if(!mp.hidden&&!e.target.closest('[data-menu]'))setMenu(false)});
   document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!mp.hidden){setMenu(false);mb.focus()}});
+  var fm=document.getElementById('form-contacto');
+  if(fm){var st=fm.querySelector('.estado'),bt=fm.querySelector('[type=submit]');
+    fm.addEventListener('submit',function(e){e.preventDefault();
+      var bad=null;['nombre','email','mensaje'].forEach(function(n){var el=fm.elements[n],ok=el.value.trim()&&(n!=='email'||/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(el.value.trim()));el.setAttribute('aria-invalid',ok?'false':'true');if(!ok&&!bad)bad=el});
+      if(bad){st.className='estado err';st.textContent='Te falta algo: revisa nombre, email y mensaje.';bad.focus();return}
+      if(fm.elements._honey.value)return;
+      var fd=new FormData(fm);fd.set('_subject','santiaventuras.com · '+fd.get('tipo')+' · '+fd.get('nombre'));fd.append('_replyto',fd.get('email'));
+      bt.disabled=true;bt.textContent='Enviando…';st.className='estado';st.textContent='';
+      fetch('https://formsubmit.co/ajax/santiagoconcep19@gmail.com',{method:'POST',headers:{'Accept':'application/json'},body:fd})
+        .then(function(r){return r.json().then(function(j){if(!r.ok||j.success===false||j.success==='false')throw new Error(j.message||'error');return j})})
+        .then(function(){fm.classList.add('enviado');st.className='estado ok';st.textContent='¡Recibido, '+fd.get('nombre').split(' ')[0]+'! Te contesto en cuanto vuelva del agua.';fm.reset()})
+        .catch(function(){st.className='estado err';st.innerHTML='No se ha podido enviar. Prueba otra vez o escríbeme a <a href="mailto:santiagoconcep19@gmail.com" style="color:inherit">santiagoconcep19@gmail.com</a>.'})
+        .finally(function(){bt.disabled=false;bt.textContent='Enviar mensaje'});
+    });
+    fm.addEventListener('input',function(e){if(e.target.getAttribute('aria-invalid')==='true'&&e.target.value.trim())e.target.setAttribute('aria-invalid','false')});
+  }
   document.querySelectorAll('[data-copy]').forEach(function(b){var l=b.textContent;b.addEventListener('click',function(){var d=function(){b.textContent='Copiado';setTimeout(function(){b.textContent=l},1600)};try{navigator.clipboard.writeText(b.dataset.copy).then(d,d)}catch(e){d()}})});
   // manifiesto: cada palabra se enciende al leerla (ya visible al 28% en reposo)
   var h=document.querySelector('[data-words]');
@@ -448,13 +512,16 @@ ul{padding:0;list-style:none}
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
   if(reduce||!window.gsap||!window.ScrollTrigger){words.forEach(function(w){w.classList.add('on')});return}
   gsap.registerPlugin(ScrollTrigger);
-  if(window.Lenis){var lenis=new Lenis({lerp:.1});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(function(t){lenis.raf(t*1000)});gsap.ticker.lagSmoothing(0);
+  // móvil: la barra de Safari cambia el alto de la pantalla al hacer scroll; que eso no recalcule las animaciones
+  ScrollTrigger.config({ignoreMobileResize:true});
+  var touch=matchMedia('(hover: none), (pointer: coarse)').matches;
+  if(window.Lenis&&!touch){var lenis=new Lenis({lerp:.1});lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(function(t){lenis.raf(t*1000)});gsap.ticker.lagSmoothing(0);
     document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener('click',function(e){var id=a.getAttribute('href');if(id.length>1){var el=document.querySelector(id);if(el){e.preventDefault();lenis.scrollTo(el,{offset:-60})}}})});}
   // portada: la foto se acerca, el nombre sube
-  gsap.fromTo('[data-hero]',{scale:1.12},{scale:1,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});
+  if(!touch)gsap.fromTo('[data-hero]',{scale:1.12},{scale:1,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});
   gsap.to('[data-hero-title]',{yPercent:-30,ease:'none',scrollTrigger:{trigger:hero,start:'top top',end:'bottom top',scrub:true}});
   // parallax suave dentro de los marcos
-  gsap.utils.toArray('[data-par]').forEach(function(img){gsap.fromTo(img,{yPercent:-6,scale:1.12},{yPercent:6,scale:1.12,ease:'none',scrollTrigger:{trigger:img.parentElement,start:'top bottom',end:'bottom top',scrub:true}})});
+  if(!touch)gsap.utils.toArray('[data-par]').forEach(function(img){gsap.fromTo(img,{yPercent:-6,scale:1.12},{yPercent:6,scale:1.12,ease:'none',scrollTrigger:{trigger:img.parentElement,start:'top bottom',end:'bottom top',scrub:true}})});
   gsap.utils.toArray('.mosaic img').forEach(function(img){gsap.to(img,{scale:1,ease:'none',scrollTrigger:{trigger:img.parentElement,start:'top bottom',end:'center center',scrub:true}})});
   gsap.utils.toArray('.card img').forEach(function(img){gsap.to(img,{scale:1,ease:'none',scrollTrigger:{trigger:img,start:'top bottom',end:'center center',scrub:true}})});
   // la escuela: el carril se desplaza en horizontal mientras la sección se queda fija
@@ -465,7 +532,7 @@ ul{padding:0;list-style:none}
     gsap.to(rail,{x:function(){return -dist()},ease:'none',scrollTrigger:{trigger:sec,start:'top top',end:function(){return '+='+dist()},pin:true,scrub:1,invalidateOnRefresh:true}});
   });
   // manifiesto
-  gsap.fromTo('[data-mani]',{scale:1.15},{scale:1,ease:'none',scrollTrigger:{trigger:'#manifiesto',start:'top bottom',end:'bottom top',scrub:true}});
+  if(!touch)gsap.fromTo('[data-mani]',{scale:1.15},{scale:1,ease:'none',scrollTrigger:{trigger:'#manifiesto',start:'top bottom',end:'bottom top',scrub:true}});
   ScrollTrigger.create({trigger:'#manifiesto',start:'top 60%',end:'center 40%',onUpdate:function(s){var n=Math.round(s.progress*words.length);words.forEach(function(w,i){w.classList.toggle('on',i<n)})},onLeave:function(){words.forEach(function(w){w.classList.add('on')})}});
 })();
 </script>
